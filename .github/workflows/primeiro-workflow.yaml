@@ -1,0 +1,17 @@
+name: devops workflow 
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+      steps:
+       - name: Checkout de codigo 
+         uses: action/checkout@v4
+
+      - name: mostrar mensagem
+        run: echo "oie mundo!" 
