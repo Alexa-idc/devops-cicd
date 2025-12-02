@@ -1,17 +1,17 @@
-name: devops workflow 
+name: Mdc Workflow
 
 on:
   push:
     branches:
-      - main
+      - main # Ou 'master', dependendo do nome da sua branch principal
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
-      steps:
-       - name: Checkout de codigo 
-         uses: action/checkout@v4
+    steps:
+      - name: Checkout do Código
+        uses: actions/checkout@v4 # Action para clonar o repositório
 
-      - name: mostrar mensagem
-        run: echo "oie mundo!" 
+      - name: Mostrar Mensagem
+        run: echo "Olá, MDC, GitHub Actions!" # Comando a ser executado
