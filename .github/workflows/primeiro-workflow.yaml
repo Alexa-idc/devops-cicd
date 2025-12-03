@@ -13,5 +13,40 @@ jobs:
       - name: Checkout do Código
         uses: actions/checkout@v4 # Action para clonar o repositório
 
-      - name: Mostrar Mensagem
-        run: echo "Olá, MDC, GitHub Actions!" # Comando a ser executado
+      - name: Build Aplicacao
+        run: echo "Buildando a aplicacao" # Comando a ser executado
+
+  dev:
+    runs-on: ubuntu-latest
+    needs: build 
+
+    steps:
+      - name: fase de desenvolvimento 
+        run: echo "deploy no ambiente de dev"
+
+  qa:
+    runs-on: ubuntu-latest
+    needs: build 
+
+    steps:
+      - name: fase de testes e qualidade
+        run: echo "executar os testes de qualidade"
+
+homologacao:
+  needs:
+    - dev
+    - qa 
+  runs-on: ubuntu-latest 
+
+  steps:
+    - name: "ambiente de homologacao"
+      run: "executando deploy no ambiente de homologacao"
+
+producao:
+  needs: homologacao
+  runs-on: ubuntu-latest
+
+  setps:
+    - name: deploy prod
+      run: echo "executando deploy em prod"
+      
